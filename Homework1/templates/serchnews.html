@@ -1,0 +1,43 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+<div class="container-fuild" style="margin-top: 5%;">
+  <h1> <b>SEARCH NEW</b></h1><br>
+</div>
+
+
+<form>
+  <input type="text" class="form-control" name="news" placeholder="Search news here..."><br>
+  <button class="btn btn-success" type="submit">News Search</button>
+
+</form>
+
+
+{% if news == None %}
+
+<br>
+<h1 style="color: red;"><b>404 news not found</b></h1>
+<br>
+{% else %}
+
+
+
+{%for i in range(news.countNews) %}
+
+<div>
+
+  <h2 style="text-align: left;"> News {{i+1}}: <b><a href="{{news.urlList[i]}}"
+        target="_blank">{{news.titleList[i]}}</a> </b></h2>
+  <hr style="border-top: 1px solid whitesmoke;">
+  <p>{{news.descriptionList[i]}} <a href="{{news.urlList[i]}}" target="_blank">Read more</a></p>
+
+</div>
+
+
+{% endfor %}
+
+
+{% endif %}
+
+
+{% endblock %}

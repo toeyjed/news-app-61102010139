@@ -1,0 +1,60 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+
+<h1 style="margin-top:5% ;"> WEATHER TODAY</h1>
+<div style="background-color: #A1C4D8; margin-top: 2%; ">
+    <form>
+        <div class="form-group">
+            <input style="  text-align: center;" type="text" class="form-control" name="city"
+                placeholder="Input City"><br>
+            <button class="btn btn-success" type="submit">Go</button>
+        </div>
+    </form>
+
+    {% if weather.description == "city not found" %}
+
+    <br>
+    <h1 style="color: red;"><b>404 city not found</b></h1>
+
+    {% else %}
+    <img src="{{weather.url_icon}}" alt="Weather icon">
+    <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
+    <p>Temperature : {{weather.temperature}}</p>
+    <p>Description : {{weather.description}} </p>
+    <p>Pressure : {{weather.pressure}} </p>
+    <p>Relative humidity : {{weather.humidity}} </p>
+    <p>Wind speed : {{weather.speed}} </p>
+
+</div>
+
+{% endif %}
+
+
+<h1> <b style="color:#015B64;">COVID-19 NEWS</b></h1>
+{% if news == None %}
+
+<h1 style="color: red;"><b>404 news not found</b></h1>
+
+{% else %}
+
+{%for i in range(5) %}
+<hr style="border-top: 1px solid whitesmoke;">
+<h2> News  {{i+1}}: <b><a href="{{news.urlList[i]}}" target="_blank">{{news.titleList[i]}}</a></b></h2>
+<img src="{{news.urlToImageList[i]}}" alt="NewsImage"> <br>
+
+<p>{{news.descriptionList[i]}} <a href="{{news.urlList[i]}}" target="_blank">Read more</a></p>
+
+
+
+
+
+
+
+
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
